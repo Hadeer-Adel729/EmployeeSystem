@@ -1,7 +1,8 @@
 # Employee Management System in C
 This project is a simple Employee Management System implemented in C. It allows users to store new employees and display all employees using a menu-driven interface. The menu navigation is done using arrow keys, and the user can select options to add new employees, display existing employees, or exit the program.
 
-#h2 Features
+Features
+---------
 - Add New Employees: Users can input details such as employee name, code, salary, bonus, and deductions. The system calculates the net salary automatically.
 
 - Display Employees: Users can view the details of all stored employees, including their name, code, and net salary.
@@ -10,7 +11,8 @@ This project is a simple Employee Management System implemented in C. It allows 
 
 - Dynamic Memory Allocation: The program dynamically allocates memory for storing employee data, ensuring efficient memory usage.
 
-#h2 Code Structure
+Code Structure
+--------------
 The code is structured into several functions, each responsible for a specific task:
 
 - New(): Displays the menu with the "New" option highlighted.
@@ -33,7 +35,8 @@ The code is structured into several functions, each responsible for a specific t
 
 - enter_key(): Handles the Enter key press to select a menu option.
 
-##How to Use
+How to Use
+----------
 - Compile the Code: Use a C compiler to compile the code.
   
 - Run the Program: Execute the compiled program.
