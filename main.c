@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <string.h>
 
-
+// Define the Employee structure
 struct Employee
 {
 	int code;
@@ -16,11 +16,11 @@ struct Employee
 	int netSalary;
 
 };
-
+// Global pointer to store employee data
 struct Employee **employees;
 
 
-/***************** Functions proto tupes ******************/
+/***************** Functions prototypes ******************/
 
 void New(void);
 
@@ -46,13 +46,11 @@ void enter_key(int *flag, int *count,int numofEmployees);
 
 /********************* Main functiobn **********************/
 
-
 int main(){
 
 	char ch; int flag=1, count=0 , numofEmployees=0, i=0;
-
-
-
+	
+	 // Clear screen and prompt for the number of employees
 	   flushall();
 
 	   clrscr();
@@ -63,8 +61,7 @@ int main(){
 
 	   scanf("%d",&numofEmployees);
 
-	  // while(( ch = getchar()) != '\n' && ch != EOF);
-
+	    // Allocate memory for employees
 	   employees = (struct Employee **)malloc(numofEmployees * sizeof(struct Employee *));
 		  for( i = 0; i < numofEmployees; i++) {
 			  employees[i] = (struct Employee *)malloc(sizeof(struct Employee));
@@ -78,10 +75,10 @@ int main(){
 
 
 	  clrscr();
-
+      // Display the initial menu
 	   New();
 
-
+    // Main loop to handle user input
 	  while(1){
 		ch = getch();
 		if(ch==NULL){
@@ -91,12 +88,12 @@ int main(){
 			}else if((int)ch == 80){
 				arrow_down(&flag);
 			}
-
 		}else{
 			 enter_key(&flag,&count,numofEmployees);
 
 		 }
 	  }
+	    // Free allocated memory before exiting
 	  for(i=0; i<numofEmployees; i++){
 
 		 free(employees[i]);
@@ -110,6 +107,7 @@ int main(){
 
 /*************** Functions implementation *****************/
 
+// Function to display the menu with "New" highlighted
 void New(){
 
 	  clrscr();
@@ -128,7 +126,7 @@ void New(){
 
 
 }
-
+// Function to display the menu with "Display" highlighted
 void Display(){
 
 	 clrscr();
@@ -146,7 +144,7 @@ void Display(){
 	 printf(" 3.Exist\n");
 
 }
-
+// Function to display the menu with "Exit" highlighted
 void Exit(){
 
 	clrscr();
@@ -163,13 +161,13 @@ void Exit(){
 	gotoxy(32,14);
 	printf("\033[1;31m 3.Exit \033[0m\n");
 }
-
+// Function to display the home screen prompt
 void homeScreen(){
 	   gotoxy(1,1);
 	   printf("\033[1;31m For Menu :press Enter \033[0m\n");
 
 }
-
+// Function to take string input from the user
 void take_str_input(char string[50]){
 
 	char ch;
@@ -197,30 +195,21 @@ void take_str_input(char string[50]){
 		}
 	 }
 }
-
+// Function to read employee details from the user
 void readEmployee(int *count ,int  numofEmployees){
 
-  // struct Employee emp;
    int j=0; char ch;
 
    clrscr();
 
-  /* for(j=0; j<50 ; j++){
-		 employees[*count].name[j] = '\0';
-   } */
-
-
    if(*count<numofEmployees){
 
-		gotoxy(27,10);
-		printf("Enter Employee name: ");
+        gotoxy(27,10);
+	printf("Enter Employee name: ");
 
-
-	  //	take_str_input(employees[*count].name);
 	  scanf(" %[^\n]" , employees[*count]->name);
 
 	  while(( ch = getchar()) != '\n' && ch != EOF);
-
 
 		printf("\n");
 
@@ -265,9 +254,6 @@ void readEmployee(int *count ,int  numofEmployees){
 		if(employees[*count]->deduct <0){
 			employees[*count]->deduct *= -1;
 		}
-
-	   //	employees[*count]=emp;
-
 		printf("\n\n");
 
 		*count = *count+1;
@@ -283,7 +269,7 @@ void readEmployee(int *count ,int  numofEmployees){
 	  getch();
 
 }
-
+// Function to display employee details
 void displayEmployee(int count){
 
   int index = 0;
@@ -345,9 +331,8 @@ void displayEmployee(int count){
   }
 
 }
-
+// Function to handle the up arrow key press
 void arrow_up(int *flag){
-
 
 	  clrscr();
 
@@ -377,9 +362,8 @@ void arrow_up(int *flag){
 		}
 
 }
-
+// Function to handle the down arrow key press
 void arrow_down(int *flag){
-
 
 	  clrscr();
 
@@ -407,17 +391,15 @@ void arrow_down(int *flag){
 		}
 
 }
-
+// Function to handle the Enter key press
 void enter_key(int *flag, int *count, int numofEmployees){//code = 13
-		int i=0;
+	int i=0;
 
 	  clrscr();
 
 	  switch(*flag){
 
 		case(1):
-
-			//  *count = *count + 1;
 
 			  readEmployee(count , numofEmployees);
 
